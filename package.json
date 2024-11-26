@@ -1,0 +1,36 @@
+{
+  "name": "weather_forecast",
+  "version": "1.0.0",
+  "description": "otus education project weather forecast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "prettier": "prettier -c -w src",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sar0868/weather_forecast.git"
+  },
+  "author": "Safarov AR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sar0868/weather_forecast/issues"
+  },
+  "homepage": "https://github.com/sar0868/weather_forecast#readme",
+  "lint-staged": {
+    "src/**/*.js": "eslint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.12.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.4.0"
+  }
+}
