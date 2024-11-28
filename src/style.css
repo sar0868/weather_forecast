@@ -10,7 +10,18 @@ form {
   margin-bottom: 20px;
 }
 
-textarea {
+.show {
+  display: flex;
+  flex-wrap: wrap;
+}
+#map {
+  display: inline-block;
+  height: 150px;
+  width: 150px;
+  margin-right: 30px;
+}
+
+#info {
   height: 150px;
   width: 150px;
   border: 1px solid black;
