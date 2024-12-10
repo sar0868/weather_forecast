@@ -47,6 +47,7 @@ export function get_weather(el) {
     newCity.innerHTML = "hello";
     el.querySelector(".list_history").prepend(newCity);
     // const url = `https://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=6cb973b96821fbec8a012c668b8f4700`;
+    //yandex static map API 4aad3cf0-c199-47b7-9630-7f1f56a24cbf
     // let responce = await fetch(url);
     // if (responce.ok) {
     //   let json = await responce.json();
