@@ -6,7 +6,7 @@ main {
   display: inline-block;
   width: 100%;
 }
-form {
+.set_data {
   margin-bottom: 20px;
 }
 
