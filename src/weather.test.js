@@ -5,6 +5,10 @@ describe("test get weather", () => {
     const el = document.createElement("main");
     it("test create markup", () => {
       weather(el);
+      expect(el.querySelector("input")).toBeTruthy();
+      expect(el.querySelector("button")).toBeTruthy();
+      expect(el.querySelector("button")).toBeTruthy();
+      expect(el.querySelector("button")).toBeTruthy();
     });
   });
 

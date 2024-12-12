@@ -1,3 +1,3 @@
-import { getWeather } from "./getWeather.js";
+import { weather } from "./weather.js";
 
-getWeather(document.querySelector("main"));
+weather(document.querySelector("main"));
