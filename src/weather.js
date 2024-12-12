@@ -1,14 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather forecast</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main>
-      <!-- <section class="weather">
+export function weather(el) {
+  el.innerHTML = `
+    <section class="weather">
         <form action="" method="get">
           <input type="text" placeholder="weather" />
           <button id="button">Show</button>
@@ -21,16 +13,14 @@
           />
           <textarea name="weather_info" id="info"></textarea>
         </div>
-      </section>
-      <section class="history">
+    </section>
+    <section class="history">
         <ul class="list_history">
           <p class="title_history">History</p>
           <li>London</li>
           <li>Minsk</li>
           <li>Moscow</li>
         </ul>
-      </section> -->
-    </main>
-    <script type="module" src="./app.js"></script>
-  </body>
-</html>
+    </section>
+    `;
+}
