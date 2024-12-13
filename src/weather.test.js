@@ -1,4 +1,7 @@
 import { weather } from "./weather";
+// import { addInfo } from "./addInfo";
+// import { drawMap } from "./drawMap";
+
 // import { mockWeather } from "./mock.weather";
 
 // global.fetch = jest.fn(() => {
@@ -23,24 +26,13 @@ describe("test get weather", () => {
     });
   });
 
-  // describe("Test get weather forecast", () => {
-  //   it("should get data json when input city and click", () => {
-  //     const expectedInfo = `
-  //     <p>City: London</p>
-  //     <p>Temp: 10 °C</p>
-  //     <img src="https://openweathermap.org/img/wn/10d@2x.png">
-  //     `;
-  //     el.querySelector("input").value = "input city";
-  //     el.querySelector("button").click();
-  //     const result = el.querySelector("#info").innerHTML;
-  //     expect(result).toBe(expectedInfo);
-  //   });
-  // });
-
-  describe("Test get static map", () => {
+  describe("Test get map from localStorage", () => {
     it.todo("test get map");
   });
 
+  describe("Test get info from localStorage", () => {
+    it.todo("test get info");
+  });
   describe("localStorage", () => {
     it.todo("test set in localStorage");
 
