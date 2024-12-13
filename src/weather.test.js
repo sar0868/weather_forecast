@@ -1,4 +1,12 @@
 import { weather } from "./weather";
+import { mockWeather } from "./mock.weather";
+/* global global */
+global.fetch = jest.fn(() => {
+  return Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve(mockWeather),
+  });
+});
 
 describe("test get weather", () => {
   const el = document.createElement("main");
@@ -15,22 +23,28 @@ describe("test get weather", () => {
     });
   });
 
-  // describe("Test get weather forecast", () => {
-  //   it("should get data json when input city and click", () => {
-  //     el.querySelector("input").value = "London";
-  //     const result = el.querySelector("button").click();
+  describe("Test get weather forecast", () => {
+    it.skip("should get data json when input city and click", () => {
+      //   const expectedInfo = `
+      // <p>City: London</p>
+      // <p>Temp: 10 °C</p>
+      // <img src="https://openweathermap.org/img/wn/10d@2x.png">
+      // `;
+      //   el.querySelector("input").value = "input city";
+      //   el.querySelector("button").click();
+      //   const result = el.querySelector("#info").innerHTML;
+      //   expect(result).toBe(expectedInfo);
+      // });
+    });
 
-  //     expect(result.name).toBe("London");
-  //   });
-  // });
+    describe("Test get static map", () => {
+      it.todo("test get map");
+    });
 
-  describe("Test get static map", () => {
-    it.todo("test get map");
-  });
+    describe("localStorage", () => {
+      it.todo("test set in localStorage");
 
-  describe("localStorage", () => {
-    it.todo("test set in localStorage");
-
-    it.todo("test get in localStorage");
+      it.todo("test get in localStorage");
+    });
   });
 });

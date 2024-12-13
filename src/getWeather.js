@@ -5,10 +5,8 @@ export async function getWeather(city) {
 
   const response = await fetch(path);
 
-  if (response.ok) {
-    const jsonData = response.json();
-    return jsonData;
-  } else {
-    console.error("error");
+  if (!response.ok) {
+    throw new Error("Cannot get data");
   }
+  return response.json();
 }

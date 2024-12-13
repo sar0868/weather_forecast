@@ -1,4 +1,5 @@
-import { getWeather } from "./getWeather";
+import { getWeather } from "./getWeather.js";
+import { addInfo } from "./addInfo.js";
 
 export function weather(el) {
   el.innerHTML = `
@@ -13,7 +14,7 @@ export function weather(el) {
             src="https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=600&height=400&center=lonlat:-0.1097224,51.5082647&zoom=14&marker=lonlat:-0.1097224,51.5082647;type:awesome;color:%23e01401&apiKey=b8568cb9afc64fad861a69edbddb2658"
             alt="map img"
           />
-          <div name="weather_info" id="info"></div>
+          <div id="info"></div>
         </div>
     </section>
     <section class="history">
@@ -30,12 +31,10 @@ export function weather(el) {
   const btn = el.querySelector("#button");
   const info = el.querySelector("#info");
 
-  btn.addEventListener("click", (e) => {
+  btn.addEventListener("click", async (e) => {
     e.preventDefault();
     const city = inputCity.value;
-    const data = getWeather(city);
-    console.log(data);
-
-    info.innerHTML = `<p>${city}</p>`;
+    const data = await getWeather(city);
+    addInfo(info, data);
   });
 }
