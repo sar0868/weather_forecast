@@ -1,10 +1,13 @@
 import { weather } from "./weather";
 
 describe("test get weather", () => {
+  const el = document.createElement("main");
+  beforeAll(() => {
+    weather(el);
+  });
+
   describe("Create markup", () => {
-    const el = document.createElement("main");
     it("test create markup", () => {
-      weather(el);
       expect(el.querySelector("input")).toBeTruthy();
       expect(el.querySelector("button")).toBeTruthy();
       expect(el.querySelector("button")).toBeTruthy();
@@ -12,9 +15,14 @@ describe("test get weather", () => {
     });
   });
 
-  describe("Test get weather forecast", () => {
-    it.todo("mock test parse json");
-  });
+  // describe("Test get weather forecast", () => {
+  //   it("should get data json when input city and click", () => {
+  //     el.querySelector("input").value = "London";
+  //     const result = el.querySelector("button").click();
+
+  //     expect(result.name).toBe("London");
+  //   });
+  // });
 
   describe("Test get static map", () => {
     it.todo("test get map");

@@ -1,3 +1,5 @@
+import { getWeather } from "./getWeather";
+
 export function weather(el) {
   el.innerHTML = `
     <section class="weather">
@@ -31,6 +33,9 @@ export function weather(el) {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     const city = inputCity.value;
+    const data = getWeather(city);
+    console.log(data);
+
     info.innerHTML = `<p>${city}</p>`;
   });
 }
