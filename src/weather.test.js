@@ -1,4 +1,5 @@
 import { weather } from "./weather";
+import { localstorage } from "./mock.localstorage";
 // import { addInfo } from "./addInfo";
 // import { drawMap } from "./drawMap";
 
@@ -10,7 +11,7 @@ import { weather } from "./weather";
 //     json: () => Promise.resolve(mockWeather),
 //   });
 // });
-
+localstorage();
 describe("test get weather", () => {
   const el = document.createElement("main");
   beforeAll(() => {
@@ -31,8 +32,25 @@ describe("test get weather", () => {
   });
 
   describe("Test get info from localStorage", () => {
-    it.todo("test get info");
+    beforeEach(() => {
+      localStorage.clear();
+    });
+    // const setLocalStorage = (id, data) => {
+    //   window.localStorage.setItem(id, JSON.stringify(data));
+    // };
+    it("should data is added into local storage", () => {
+      const mockId = "1";
+      const mockJson = { data: "json data" };
+
+      localStorage.setItem(mockId, JSON.stringify(mockJson));
+      // const result = localStorage.getItem(mockId);
+      // const result = localStorage.key(0);
+      // expect(result).toBe(JSON.stringify(mockId));
+      // setLocalStorage(mockId, mockJson);
+      expect(localStorage.getItem(mockId)).toEqual(JSON.stringify(mockJson));
+    });
   });
+
   describe("localStorage", () => {
     it.todo("test set in localStorage");
 
