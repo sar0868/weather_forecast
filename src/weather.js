@@ -1,6 +1,7 @@
 import { getWeather } from "./getWeather.js";
 import { addInfo } from "./addInfo.js";
 import { drawMap } from "./drawMap.js";
+import { fillHistory } from "./fillHistory.js";
 
 export function weather(el) {
   el.innerHTML = `
@@ -20,11 +21,9 @@ export function weather(el) {
         </div>
     </section>
     <section class="history">
-        <div class="list_history">
-          <h2 class="title_history">History</h2>
-          <p class="key">London</p>
-          <p class="key">Minsk</p>
-          <p class="key">Moscow</p>
+      <h2 class="title_history">History</h2>
+      <div id="list_history">
+        <p class="key"></p>
         </div>
     </section>
     `;
@@ -33,6 +32,9 @@ export function weather(el) {
   const btn = el.querySelector("#button");
   const info = el.querySelector("#info");
   const map = el.querySelector("#map");
+  const listHistory = el.querySelector("#list_history");
+  fillHistory(listHistory);
+  const itemsHistory = el.getElementsByClassName("key");
 
   btn.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -40,5 +42,18 @@ export function weather(el) {
     const data = await getWeather(city);
     addInfo(info, data);
     drawMap(map, data);
+    localStorage.setItem(city, JSON.stringify(data));
+    fillHistory(listHistory);
+  });
+
+  listHistory.addEventListener("mousemove", () => {
+    [...itemsHistory].forEach((item) => {
+      item.addEventListener("click", function () {
+        const city = item.innerHTML;
+        const data = JSON.parse(localStorage.getItem(city));
+        addInfo(info, data);
+        drawMap(map, data);
+      });
+    });
   });
 }

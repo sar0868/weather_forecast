@@ -1,17 +1,47 @@
 import { weather } from "./weather";
-import { localstorage } from "./mock.localstorage";
+// import { localstorage } from "./mock.localstorage";
+// import { getWeather } from "./getWeather";
 // import { addInfo } from "./addInfo";
 // import { drawMap } from "./drawMap";
 
-// import { mockWeather } from "./mock.weather";
+import { mockWeather } from "./mock.weather";
 
-// global.fetch = jest.fn(() => {
-//   return Promise.resolve({
-//     ok: true,
-//     json: () => Promise.resolve(mockWeather),
-//   });
-// });
-localstorage();
+/* global global */
+global.fetch = jest.fn(() => {
+  return Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve(mockWeather),
+  });
+});
+
+class LocalStorageMock {
+  constructor() {
+    this.store = {};
+  }
+
+  clear() {
+    this.store = {};
+  }
+
+  getItem(key) {
+    return this.store[key] || null;
+  }
+
+  setItem(key, value) {
+    this.store[key] = value;
+  }
+
+  removeItem(key) {
+    delete this.store[key];
+  }
+}
+
+global.localStorage = jest.fn(() => {
+  return new LocalStorageMock();
+});
+
+global.localStorage = new LocalStorageMock();
+
 describe("test get weather", () => {
   const el = document.createElement("main");
   beforeAll(() => {
@@ -27,6 +57,22 @@ describe("test get weather", () => {
     });
   });
 
+  describe("Test get info from localStorage after click", () => {
+    afterEach(() => {
+      localStorage.clear();
+      jest.clearAllMocks();
+    });
+
+    it("should data is added into local storage", () => {
+      const city = "London";
+      el.querySelector("input").innerHTML = city;
+      el.querySelector("#button").click();
+      console.log(localStorage.length);
+      // const result = localStorage.getItem(city);
+      // expect(localStorage.getItem(city)).toEqual(JSON.stringify(mockWeather));
+    });
+  });
+
   describe("Test get map from localStorage", () => {
     it.todo("test get map");
   });
@@ -35,18 +81,15 @@ describe("test get weather", () => {
     beforeEach(() => {
       localStorage.clear();
     });
-    // const setLocalStorage = (id, data) => {
-    //   window.localStorage.setItem(id, JSON.stringify(data));
-    // };
+
     it("should data is added into local storage", () => {
       const mockId = "1";
       const mockJson = { data: "json data" };
 
       localStorage.setItem(mockId, JSON.stringify(mockJson));
-      // const result = localStorage.getItem(mockId);
-      // const result = localStorage.key(0);
-      // expect(result).toBe(JSON.stringify(mockId));
-      // setLocalStorage(mockId, mockJson);
+
+      const result = localStorage.key(0);
+      expect(result).toBe(mockId);
       expect(localStorage.getItem(mockId)).toEqual(JSON.stringify(mockJson));
     });
   });
