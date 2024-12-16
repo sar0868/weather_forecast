@@ -1,8 +1,4 @@
 import { weather } from "./weather";
-// import { localstorage } from "./mock.localstorage";
-// import { getWeather } from "./getWeather";
-// import { addInfo } from "./addInfo";
-// import { drawMap } from "./drawMap";
 
 import { mockWeather } from "./mock.weather";
 
