@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const path = require("path");
 
 module.exports = {
@@ -8,24 +10,24 @@ module.exports = {
     filename: "index_bundle.js",
   },
   plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
-  module: {
-    rules: [
-      // CSS rules
-      {
-        test: /\\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              importLoaders: 1,
-              modules: true,
-            },
-          },
-        ],
-      },
-    ],
-  },
+  //   module: {
+  //     module: {
+  //       rules: [
+  //         {
+  //           test: /.s?css$/,
+  //           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+  //         },
+  //       ],
+  //     },
+  //     optimization: {
+  //       minimizer: [
+  //         // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+  //         // `...`,
+  //         new CssMinimizerPlugin(),
+  //       ],
+  //     },
+  //     plugins: [new MiniCssExtractPlugin()],
+  //   },
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
