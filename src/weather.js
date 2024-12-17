@@ -12,10 +12,6 @@ export function weather(el) {
         </form>
         <div class="show">
           <div id="map">
-            <img
-              src="./map_example.png"
-              alt="map img"
-            />
           </div>
           <div id="info"></div>
         </div>
