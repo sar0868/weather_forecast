@@ -7,10 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "./dist"),
     filename: "app.js",
   },
-  plugins: [
-    new HtmlWebpackPlugin({ template: "./src/index.html" }),
-    // new MiniCssExtractPlugin(),
-  ],
+  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
   module: {
     rules: [
       {
