@@ -38,28 +38,7 @@ export function weather(el) {
     const data = await getWeather(city);
     addInfo(info, data);
     drawMap(map, data);
-    // let temp = JSON.parse(localStorage.getItem("history"));
-    // if (temp === null) {
-    //   temp = [];
-    // }
-    // let flag = true;
-    // for (let item of temp) {
-    //   if (item.place === city) {
-    //     item = {
-    //       place: city,
-    //       forecast: data,
-    //     };
-    //     flag = false;
-    //     break;
-    //   }
-    // }
-    // if (flag) {
-    //   temp.push({
-    //     place: city,
-    //     forecast: data,
-    //   });
-    // }
-    // localStorage.setItem("history", JSON.stringify(temp));
+
     addDataLocalStorage(city, data);
     fillHistory(listHistory);
   });
