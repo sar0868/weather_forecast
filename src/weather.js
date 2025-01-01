@@ -38,7 +38,29 @@ export function weather(el) {
     const data = await getWeather(city);
     addInfo(info, data);
     drawMap(map, data);
-    localStorage.setItem(city, JSON.stringify(data));
+    // let temp = JSON.parse(localStorage.getItem("history"));
+    // if (temp === null) {
+    //   temp = [];
+    // }
+    // let flag = true;
+    // for (let item of temp) {
+    //   if (item.place === city) {
+    //     item = {
+    //       place: city,
+    //       forecast: data,
+    //     };
+    //     flag = false;
+    //     break;
+    //   }
+    // }
+    // if (flag) {
+    //   temp.push({
+    //     place: city,
+    //     forecast: data,
+    //   });
+    // }
+    // localStorage.setItem("history", JSON.stringify(temp));
+    addDataLocalStorage(city, data);
     fillHistory(listHistory);
   });
 
@@ -46,10 +68,40 @@ export function weather(el) {
     [...itemsHistory].forEach((item) => {
       item.addEventListener("click", function () {
         const city = item.innerHTML;
-        const data = JSON.parse(localStorage.getItem(city));
-        addInfo(info, data);
-        drawMap(map, data);
+        const data = JSON.parse(localStorage.getItem("history"));
+        for (const item of data) {
+          if (item.place === city) {
+            addInfo(info, item.forecast);
+            drawMap(map, item.forecast);
+            break;
+          }
+        }
       });
     });
   });
+}
+
+function addDataLocalStorage(city, data) {
+  let temp = JSON.parse(localStorage.getItem("history"));
+  if (temp === null) {
+    temp = [];
+  }
+  let flag = true;
+  for (let item of temp) {
+    if (item.place === city) {
+      item = {
+        place: city,
+        forecast: data,
+      };
+      flag = false;
+      break;
+    }
+  }
+  if (flag) {
+    temp.push({
+      place: city,
+      forecast: data,
+    });
+  }
+  localStorage.setItem("history", JSON.stringify(temp));
 }
