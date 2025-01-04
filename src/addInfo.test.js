@@ -12,6 +12,6 @@ describe("test add info", () => {
 
     addInfo(el, data);
 
-    expect(el.innerHTML).toBe(expectedInfo);
+    expect(el.innerHTML).toMatchSnapshot(expectedInfo);
   });
 });
